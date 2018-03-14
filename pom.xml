@@ -8,6 +8,11 @@
   <version>0.1</version>
   <name>presto-parcel</name>
 
+  <properties>
+    <presto.version>0.196</presto.version>
+    <parcel.version>${presto.version}.presto${project.version}</parcel.version>
+  </properties>
+
   <build>
     <finalName>${project.artifactId}-${parcel.version}</finalName>
 
@@ -41,10 +46,4 @@
     </resources>
   </build>
 
-  <properties>
-    <presto.version>0.147</presto.version>
-    <jdk.version>8u91</jdk.version>
-    <jdk.build>b14</jdk.build>
-    <parcel.version>${presto.version}.presto${project.version}</parcel.version>
-  </properties>
 </project>

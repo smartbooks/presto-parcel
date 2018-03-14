@@ -1,20 +1,11 @@
 #!/bin/sh
 
-pushd .
 cd ${project.build.directory}
 
 parcel_name="${project.build.finalName}"
 mkdir $parcel_name
 
-jdk_download_url="http://download.oracle.com/otn-pub/java/jdk/${jdk.version}-${jdk.build}/jdk-${jdk.version}-linux-x64.tar.gz"
-jdk_download_name="jdk.tar.gz"
-curl -L -o $jdk_download_name -H "Cookie: oraclelicense=accept-securebackup-cookie" $jdk_download_url
 decompressed_dir="extract"
-mkdir $decompressed_dir
-tar xzf $jdk_download_name -C $decompressed_dir
-mv $decompressed_dir/$(\ls $decompressed_dir) $parcel_name/jdk
-rm -rf $decompressed_dir
-
 
 presto_download_name="presto.tar.gz"
 presto_download_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${presto.version}/presto-server-${presto.version}.tar.gz"
@@ -52,7 +43,7 @@ EOF
 chmod +x ${parcel_name}/bin/presto
 
 cp -a ${project.build.outputDirectory}/meta ${parcel_name}
-tar zcf ${parcel_name}.parcel ${parcel_name}/ --owner=root --group=root
+tar zcf ${parcel_name}.parcel ${parcel_name}/ --owner=presto --group=presto
 
 mkdir repository
 for i in el5 el6 sles11 lucid precise squeeze wheezy; do
@@ -61,5 +52,3 @@ done
 
 cd repository
 curl https://raw.githubusercontent.com/cloudera/cm_ext/master/make_manifest/make_manifest.py | python
-
-popd
