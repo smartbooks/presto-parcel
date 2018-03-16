@@ -14,6 +14,10 @@ curl -L -o $presto_download_name $presto_download_url
 mkdir $decompressed_dir
 tar xzf $presto_download_name -C $decompressed_dir
 
+#copy oracle plugin
+mv ./classes/presto.0.196.plugin.oracle $decompressed_dir/plugin/oracle
+rm -rf ./classes/presto.0.196.plugin.oracle
+
 presto_dir=`\ls $decompressed_dir`
 for file in `\ls $decompressed_dir/$presto_dir`; do
   mv $decompressed_dir/$presto_dir/$file $parcel_name
