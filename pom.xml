@@ -11,6 +11,7 @@
   <properties>
     <presto.version>0.196</presto.version>
     <parcel.version>${presto.version}.presto${project.version}</parcel.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
