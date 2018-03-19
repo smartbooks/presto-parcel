@@ -19,7 +19,7 @@ mkdir $decompressed_dir
 tar xzf $presto_download_name -C $decompressed_dir
 
 #move oracle plugin to presto.
-mv classes/presto.${presto.version}.plugin.oracle $decompressed_dir/presto-server-${presto.version}/plugin/oracle
+#mv classes/presto.${presto.version}.plugin.oracle $decompressed_dir/presto-server-${presto.version}/plugin/oracle
 
 #move presto to parcel dir.
 presto_dir=`\ls $decompressed_dir`
